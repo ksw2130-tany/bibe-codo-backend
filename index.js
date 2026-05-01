@@ -5,9 +5,10 @@ const cors = require("cors");
 const todoRoutes = require("./routers/todoRoutes");
 
 const app = express();
-const PORT = process.env.port || 8000;
+const PORT = process.env.PORT || 8000;
 const MONGO_URI =
   process.env.MONGO_URI ||
+  process.env.MONGODB_URI ||
   process.env["mongo-uri"] ||
   "mongodb://127.0.0.1:27017/todo-backend";
 
