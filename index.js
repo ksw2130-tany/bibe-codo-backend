@@ -1,16 +1,18 @@
-require("dotenv").config({ path: require("path").resolve(__dirname, ".env") });
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const todoRoutes = require("./routers/todoRoutes");
 
 const app = express();
-const PORT = process.env.PORT || 8000;
-const MONGO_URI =
-  process.env.MONGO_URI ||
-  process.env.MONGODB_URI ||
-  process.env["mongo-uri"] ||
-  "mongodb://127.0.0.1:27017/todo-backend";
+const PORT = process.env.port || 5000;
+const MONGO_URI = process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+  console.error("MONGO_URI 환경변수가 설정되지 않았습니다.");
+  process.exit(1);
+}
 
 app.use(express.json());
 app.use(cors());
