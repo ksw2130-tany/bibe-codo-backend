@@ -6,7 +6,7 @@ const cors = require("cors");
 const todoRoutes = require("./routers/todoRoutes");
 
 const app = express();
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || process.env.port || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
